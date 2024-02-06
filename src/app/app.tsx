@@ -1,12 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.css';
 
-import NxWelcome from './nx-welcome';
-
 export function App() {
   return (
-    <div>
-      <NxWelcome title="chatwave" />
+    <div className="text-red-500">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident iste
+      quaerat vero praesentium commodi sequi eius atque, consequuntur omnis qui
+      amet accusantium. Qui, veniam debitis! Quidem quasi minima quisquam modi?
     </div>
   );
 }
