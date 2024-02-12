@@ -1,11 +1,9 @@
 import { Outlet } from 'react-router-dom';
 
-export function App() {
+export const Auth = () => {
   return (
-    <main>
+    <div id="auth-module">
       <Outlet />
-    </main>
+    </div>
   );
-}
-
-export default App;
+};
