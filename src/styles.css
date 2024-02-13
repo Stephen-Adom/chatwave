@@ -11,3 +11,28 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
 }
+
+@layer components {
+  .form-control {
+    background: theme('backgroundImage.lightGreyGradient');
+    box-shadow: theme('boxShadow.shadowLight');
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.4rem;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .form-control:focus {
+    outline: none;
+    background: #e3e9f2;
+    box-shadow: none;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    border-radius: 0.4rem;
+  }
+}

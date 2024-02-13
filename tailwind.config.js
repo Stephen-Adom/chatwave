@@ -12,7 +12,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      boxShadow: {},
+      colors: {
+        primaryColor: '#5867e8',
+        secondaryColor: '#958bf4',
+      },
+      backgroundImage: {
+        lightGreyGradient: 'linear-gradient(145deg, #f4f5f7, #ffffff)',
+      },
+      boxShadow: {
+        shadowLight: '5px 5px 15px #D1D9E6, -5px -5px 15px #ffffff',
+      },
     },
   },
   plugins: [],
