@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import App from '../app';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import { Auth, Login } from '@chatwave/pages/auth';
+import { Auth, Login, Register } from '@chatwave/pages/auth';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
           {
             path: 'login',
             element: <Login />,
+          },
+          {
+            path: 'register',
+            element: <Register />,
           },
         ],
       },
