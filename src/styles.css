@@ -20,6 +20,8 @@ body {
     border-radius: 0.4rem;
     width: 100%;
     font-size: 0.9rem;
+    border: none;
+    transition: 0.2s all ease-in;
   }
 
   .form-control:focus {

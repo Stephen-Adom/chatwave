@@ -9,7 +9,7 @@ import {
 export const ChatBox = () => {
   return (
     <div className="w-full relative">
-      <div className="chatbox-header absolute top-0 left-0 w-full bg-white py-4 px-5 flex items-center justify-between shadow-shadowLight z-[2]">
+      <div className="chatbox-header absolute top-0 left-0 w-full bg-white py-4 px-5 flex items-center justify-between border-b border-gray-300 z-[2]">
         <div className="chat-info flex items-center space-x-3">
           <div className="image-container w-12 h-12 rounded-full overflow-hidden cursor-pointer">
             <img src={imageOne} alt="first" className="w-full" />

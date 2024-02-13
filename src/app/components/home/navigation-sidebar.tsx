@@ -5,7 +5,7 @@ import imageOne from 'assets/images/users/100_1.jpg';
 
 export const NavigationSidebar = () => {
   return (
-    <aside className="fixed top-0 left-0 w-[70px] bg-white h-screen flex flex-col items-center justify-center pt-8 pb-5 border-r border-gray-300">
+    <aside className="fixed top-0 left-0 w-[70px] bg-white h-screen flex flex-col items-center justify-center pt-8 pb-5 shadow-shadowLight z-[3]">
       <img
         src={chatWaveLogo}
         alt="chat wave logo"
