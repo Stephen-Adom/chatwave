@@ -16,6 +16,8 @@
     "baseUrl": "src",
     "paths": {
       "@chatwave/pages/auth": ["app/pages/auth/index.ts"],
+      "@chatwave/pages/home": ["app/pages/home/index.ts"],
+      "@chatwave/components": ["app/components/index.ts"],
       "@chatwave/utils": ["app/utils/index.ts"]
     }
   },

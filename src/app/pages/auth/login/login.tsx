@@ -1,8 +1,10 @@
 import chatWave from 'assets/images/logo/chatwave-logo.png';
 import loginSvg from 'assets/images/auth/joel-filipe-jU9VAZDGMzs-unsplash.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <div
       id="login-section"
@@ -46,6 +48,7 @@ export const Login = () => {
 
           <div className="form-group mt-10">
             <button
+              onClick={() => navigate('/chats')}
               type="button"
               className="btn bg-primaryColor hover:bg-secondaryColor text-white w-full py-3 shadow-shadowLight"
             >

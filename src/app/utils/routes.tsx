@@ -2,6 +2,7 @@
 import App from '../app';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { Auth, Login, Register } from '@chatwave/pages/auth';
+import { Chats, Home } from '@chatwave/pages/home';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,16 @@ export const router = createBrowserRouter([
           {
             path: 'register',
             element: <Register />,
+          },
+        ],
+      },
+      {
+        path: '',
+        element: <Home />,
+        children: [
+          {
+            path: 'chats',
+            element: <Chats />,
           },
         ],
       },
