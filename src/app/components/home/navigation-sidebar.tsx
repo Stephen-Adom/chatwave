@@ -1,6 +1,7 @@
 import { IoChatbubbleEllipsesOutline, IoCallOutline } from 'react-icons/io5';
 import { PiUsersThree } from 'react-icons/pi';
 import chatWaveLogo from 'assets/images/logo/chatwave-logo.png';
+import imageOne from 'assets/images/users/100_1.jpg';
 
 export const NavigationSidebar = () => {
   return (
@@ -29,7 +30,9 @@ export const NavigationSidebar = () => {
         </li>
       </ul>
 
-      <div className="w-12 h-12 rounded-lg mt-auto shadow-shadowLight bg-lightGreyGradient"></div>
+      <div className="w-12 h-12 rounded-lg mt-auto overflow-hidden shadow-shadowLight bg-lightGreyGradient">
+        <img src={imageOne} alt="first" className="w-full" />
+      </div>
     </aside>
   );
 };
