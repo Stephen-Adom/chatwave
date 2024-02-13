@@ -1,4 +1,4 @@
-import { OnlineUsers } from '@chatwave/components';
+import { AllMessages, OnlineUsers, SearchMessages } from '@chatwave/components';
 import { TbEditCircle } from 'react-icons/tb';
 
 export const Chats = () => {
@@ -14,6 +14,10 @@ export const Chats = () => {
         </div>
 
         <OnlineUsers />
+
+        <SearchMessages />
+
+        <AllMessages />
       </div>
       <div className="fixed top-0 bg-red-500 h-screen ml-[20%] w-[80%]"></div>
     </section>
