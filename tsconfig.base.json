@@ -13,10 +13,10 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@chatwave/pages/auth": ["src/app/pages/auth/index.ts"],
-      "@chatwave/utils": ["src/app/utils/index.ts"]
+      "@chatwave/pages/auth": ["app/pages/auth/index.ts"],
+      "@chatwave/utils": ["app/utils/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

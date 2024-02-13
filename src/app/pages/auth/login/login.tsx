@@ -1,5 +1,5 @@
-import chatWave from '../../../../assets/images/logo/chatwave-logo.png';
-import loginSvg from '../../../../assets/images/auth/joel-filipe-jU9VAZDGMzs-unsplash.jpg';
+import chatWave from 'assets/images/logo/chatwave-logo.png';
+import loginSvg from 'assets/images/auth/joel-filipe-jU9VAZDGMzs-unsplash.jpg';
 import { Link } from 'react-router-dom';
 
 export const Login = () => {
