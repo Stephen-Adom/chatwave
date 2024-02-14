@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   IoChatbubbleEllipsesOutline,
   IoCallOutline,
@@ -124,8 +125,9 @@ export const NavigationSidebar = () => {
           </li>
           <li>
             <a
-              href="#"
-              className="flex items-center gap-x-2 font-bold px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-red-700"
+              data-modal-target="popup-modal"
+              data-modal-toggle="popup-modal"
+              className="flex items-center gap-x-2 font-bold px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-red-700 cursor-pointer"
             >
               <IoLogOutOutline />
               Sign out
