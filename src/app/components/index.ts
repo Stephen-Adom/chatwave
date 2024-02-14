@@ -4,4 +4,3 @@ export * from './home/chats/searchMessages';
 export * from './home/chats/allMessages';
 export * from './home/chats/chatBox';
 export * from './home/chats/chatDetails';
-export * from './signOutDialog/signOutDialog';

@@ -12,6 +12,7 @@ import chatWaveLogo from 'assets/images/logo/chatwave-logo.png';
 import imageOne from 'assets/images/users/100_1.jpg';
 import styles from './navigation-sidebar.module.css';
 import { NavLink } from 'react-router-dom';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 const sidebarRoutes: { url: string; icon: JSX.Element }[] = [
   {
@@ -50,6 +51,20 @@ export const NavigationSidebar = () => {
         </NavLink>
       );
     });
+  };
+
+  const confirmSignOut = () => {
+    confirmDialog({
+      message: 'Are you sure you want to sign out?',
+      header: 'Sign Out?',
+      icon: 'pi pi-info-circle',
+      defaultFocus: 'reject',
+      accept: () => acceptSignOut(),
+    });
+  };
+
+  const acceptSignOut = () => {
+    console.log('sign out');
   };
 
   return (
@@ -125,8 +140,7 @@ export const NavigationSidebar = () => {
           </li>
           <li>
             <a
-              data-modal-target="popup-modal"
-              data-modal-toggle="popup-modal"
+              onClick={confirmSignOut}
               className="flex items-center gap-x-2 font-bold px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-red-700 cursor-pointer"
             >
               <IoLogOutOutline />
@@ -135,6 +149,8 @@ export const NavigationSidebar = () => {
           </li>
         </ul>
       </div>
+
+      <ConfirmDialog />
     </aside>
   );
 };

@@ -38,3 +38,28 @@ body {
     border-radius: 0.4rem;
   }
 }
+
+.p-dialog.p-component {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.p-dialog-title {
+  font-size: 1rem;
+}
+
+.p-dialog .p-dialog-header {
+  padding: 1rem 1.5rem;
+}
+
+.p-confirm-dialog-reject,
+.p-confirm-dialog-accept {
+  padding: 0 1rem;
+  box-shadow: none;
+}
+
+.p-confirm-dialog-reject .p-button-label,
+.p-confirm-dialog-accept .p-button-label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}

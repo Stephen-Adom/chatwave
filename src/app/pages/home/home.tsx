@@ -1,4 +1,4 @@
-import { NavigationSidebar, SignOutDialog } from '@chatwave/components';
+import { NavigationSidebar } from '@chatwave/components';
 import { Outlet } from 'react-router-dom';
 
 export const Home = () => {
@@ -8,8 +8,6 @@ export const Home = () => {
       <main className="w-full ml-[70px]">
         <Outlet />
       </main>
-
-      <SignOutDialog />
     </div>
   );
 };
