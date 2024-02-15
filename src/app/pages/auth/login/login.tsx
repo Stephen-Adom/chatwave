@@ -1,9 +1,33 @@
 import chatWave from 'assets/images/logo/chatwave-logo.png';
 import loginSvg from 'assets/images/auth/joel-filipe-jU9VAZDGMzs-unsplash.jpg';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import styles from './login.module.css';
+
+type loginFormType = {
+  username: string;
+  password: string;
+};
 
 export const Login = () => {
   const navigate = useNavigate();
+  const form = useForm<loginFormType>({
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+  });
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
+  console.log(form.control.getFieldState('username'));
+
+  const submitForm = (data: loginFormType) => {
+    console.log(data);
+  };
 
   return (
     <div
@@ -22,22 +46,41 @@ export const Login = () => {
           Welcome Back!
         </h1>
 
-        <form action="" className="w-[70%] sm:w-[70%] md:w-[60%] mx-auto">
+        <form
+          onSubmit={handleSubmit(submitForm)}
+          className="w-[70%] sm:w-[70%] md:w-[60%] mx-auto"
+        >
           <div className="form-group">
             <input
               type="text"
               aria-label="username"
-              className="form-control"
+              className={`form-control ${
+                control.getFieldState('username').invalid && styles.error
+              }`}
               placeholder="Username"
+              {...register('username', {
+                required: 'Username is required',
+              })}
             />
+            <span className="block text-red-600 italic text-xs mt-2 font-semibold">
+              {errors.username?.message}
+            </span>
           </div>
           <div className="form-group">
             <input
               type="password"
               aria-label="password"
-              className="form-control"
+              className={`form-control ${
+                control.getFieldState('password').invalid && styles.error
+              }`}
               placeholder="Password"
+              {...register('password', {
+                required: 'Password is required',
+              })}
             />
+            <span className="block text-red-600 italic text-xs mt-2 font-semibold">
+              {errors.password?.message}
+            </span>
           </div>
 
           <div className="form-group text-right">
@@ -48,8 +91,7 @@ export const Login = () => {
 
           <div className="form-group mt-10">
             <button
-              onClick={() => navigate('/chats')}
-              type="button"
+              type="submit"
               className="btn bg-primaryColor hover:bg-secondaryColor text-white w-full py-3 shadow-shadowLight"
             >
               Login
