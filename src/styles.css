@@ -63,3 +63,24 @@ body {
   font-weight: 500;
   font-size: 0.9rem;
 }
+
+.react-international-phone-input-container {
+  background: theme('backgroundImage.lightGreyGradient');
+  box-shadow: theme('boxShadow.shadowLight');
+  border-radius: 0.4rem;
+  width: 100%;
+  font-size: 0.9rem;
+  border: none;
+  transition: 0.2s all ease-in;
+  padding: 0.35rem 0 !important;
+}
+
+.react-international-phone-country-selector-button {
+  border: none !important;
+}
+
+.react-international-phone-input {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+}
