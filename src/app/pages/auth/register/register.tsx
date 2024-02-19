@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { PhoneInput, PhoneInputRefType } from 'react-international-phone';
 import { Link } from 'react-router-dom';
 import { PhoneNumberUtil } from 'google-libphonenumber';
-import { useEffect, useRef } from 'react';
-import { debounceTime, fromEvent, map } from 'rxjs';
+import { useEffect, useRef, useState } from 'react';
+import { debounceTime, fromEvent, map, of, tap } from 'rxjs';
 import styles from './register.module.css';
 import { AuthenticationService } from '@chatwave/services';
 
@@ -23,6 +23,7 @@ type registerFormType = {
 const authService = new AuthenticationService();
 
 export const Register = () => {
+  const [loading, setLoading] = useState(false);
   const form = useForm<registerFormType>({
     defaultValues: {
       firstname: '',
@@ -93,16 +94,16 @@ export const Register = () => {
   };
 
   const registerUser = (userInfo: registerFormType) => {
-    authService
-      .registerUser(userInfo)
-      .then((res) => {
-        res.json().then((result) => {
+    authService.registerUser(userInfo).then((res) => {
+      res
+        .json()
+        .then((result) => {
           console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
   };
 
   return (

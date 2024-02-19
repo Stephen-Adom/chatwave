@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 import { BASEURI } from './baseUri';
 import { RegisterUserType } from '@chatwave/utils';
 
