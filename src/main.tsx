@@ -9,14 +9,18 @@ import 'react-international-phone/style.css';
 import './styles.css';
 
 import { PrimeReactProvider } from 'primereact/api';
+import { Provider } from 'react-redux';
+import { store } from '@chatwave/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <StrictMode>
-    <PrimeReactProvider>
-      <RouterProvider router={router} />
-    </PrimeReactProvider>
+    <Provider store={store}>
+      <PrimeReactProvider>
+        <RouterProvider router={router} />
+      </PrimeReactProvider>
+    </Provider>
   </StrictMode>
 );

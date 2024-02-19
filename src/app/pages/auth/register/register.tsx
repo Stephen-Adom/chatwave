@@ -8,6 +8,7 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 import { useEffect, useRef } from 'react';
 import { debounceTime, fromEvent, map } from 'rxjs';
 import styles from './register.module.css';
+import { AuthenticationService } from '@chatwave/services';
 
 type registerFormType = {
   firstname: string;
@@ -18,6 +19,8 @@ type registerFormType = {
   confirmPassword: string;
   phonenumber: string;
 };
+
+const authService = new AuthenticationService();
 
 export const Register = () => {
   const form = useForm<registerFormType>({
@@ -39,6 +42,7 @@ export const Register = () => {
     setError,
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = form;
 
@@ -88,6 +92,19 @@ export const Register = () => {
     }
   };
 
+  const registerUser = (userInfo: registerFormType) => {
+    authService
+      .registerUser(userInfo)
+      .then((res) => {
+        res.json().then((result) => {
+          console.log(result);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div
       id="register-section"
@@ -104,7 +121,7 @@ export const Register = () => {
         <h1 className="text-2xl text-center my-5">Welcome To ChatWave!</h1>
 
         <form
-          onSubmit={handleSubmit((data) => console.log(data))}
+          onSubmit={handleSubmit(registerUser)}
           className="grid grid-cols-2 gap-x-4 w-[85%] mx-auto mt-10"
         >
           <div className="form-group">
@@ -117,7 +134,7 @@ export const Register = () => {
               }`}
               {...register('firstname', {
                 required: {
-                  value: true,
+                  value: false,
                   message: 'Firstname is required',
                 },
               })}
@@ -196,8 +213,11 @@ export const Register = () => {
               defaultCountry="gh"
               name={name}
               ref={phoneRef}
+              onChange={(value) => {
+                setValue('phonenumber', value);
+              }}
               className={`${
-                control.getFieldState('firstname').invalid && styles.error
+                control.getFieldState('phonenumber').invalid && styles.error
               }`}
             />
             {errors.phonenumber?.type === 'phoneInvalid' && (

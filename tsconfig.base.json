@@ -18,7 +18,9 @@
       "@chatwave/pages/auth": ["app/pages/auth/index.ts"],
       "@chatwave/pages/home": ["app/pages/home/index.ts"],
       "@chatwave/components": ["app/components/index.ts"],
-      "@chatwave/utils": ["app/utils/index.ts"]
+      "@chatwave/utils": ["app/utils/index.ts"],
+      "@chatwave/store": ["app/store/index.ts"],
+      "@chatwave/services": ["app/services/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
