@@ -7,9 +7,15 @@ export type RegisterUserType = {
   phonenumber: string;
 };
 
+export type loginFormType = {
+  username: string;
+  password: string;
+};
+
 export type ErrorType = {
   status: string;
-  messages: string[];
+  messages?: string[];
+  message?: string;
 };
 
 export type AuthUser = {

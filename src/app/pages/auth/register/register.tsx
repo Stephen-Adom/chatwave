@@ -3,7 +3,7 @@ import whiteBg from 'assets/images/auth/white-bg.jpeg';
 import chatWave from 'assets/images/logo/chatwave-logo.png';
 import { useForm } from 'react-hook-form';
 import { PhoneInput, PhoneInputRefType } from 'react-international-phone';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PhoneNumberUtil } from 'google-libphonenumber';
 import { useEffect, useRef, useState } from 'react';
 import { debounceTime, fromEvent, map } from 'rxjs';
@@ -33,7 +33,6 @@ const authService = new AuthenticationService();
 export const Register = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const form = useForm<registerFormType>({
     defaultValues: {
@@ -124,7 +123,7 @@ export const Register = () => {
     sessionStorage.setItem('access_token', response.access_token);
     sessionStorage.setItem('refresh_token', response.refresh_token);
     dispatch(setAuthUser(userInfo));
-    navigate('/chats');
+    window.location.href = '/chats';
   };
 
   return (
@@ -156,7 +155,7 @@ export const Register = () => {
               }`}
               {...register('firstname', {
                 required: {
-                  value: false,
+                  value: true,
                   message: 'Firstname is required',
                 },
               })}

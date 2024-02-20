@@ -1,16 +1,25 @@
 import chatWave from 'assets/images/logo/chatwave-logo.png';
 import loginSvg from 'assets/images/auth/joel-filipe-jU9VAZDGMzs-unsplash.jpg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styles from './login.module.css';
+import { AuthenticationService } from '@chatwave/services';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  AuthenticationReponse,
+  handleError,
+  loginFormType,
+  notifySuccess,
+} from '@chatwave/utils';
+import localforage from 'localforage';
+import { setAuthUser } from '@chatwave/store';
 
-type loginFormType = {
-  username: string;
-  password: string;
-};
+const authService = new AuthenticationService();
 
 export const Login = () => {
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const form = useForm<loginFormType>({
     defaultValues: {
       username: '',
@@ -26,7 +35,26 @@ export const Login = () => {
   console.log(form.control.getFieldState('username'));
 
   const submitForm = (data: loginFormType) => {
-    console.log(data);
+    setLoading(true);
+    authService
+      .authenticate(data)
+      .then((response: AuthenticationReponse) => {
+        notifySuccess('User signed in successfully');
+        setLoading(false);
+        saveUserInfoAndRedirect(response);
+      })
+      .catch((error) => {
+        setLoading(false);
+        handleError(error);
+      });
+  };
+
+  const saveUserInfoAndRedirect = async (response: AuthenticationReponse) => {
+    const userInfo = await localforage.setItem('authUser', response.data);
+    sessionStorage.setItem('access_token', response.access_token);
+    sessionStorage.setItem('refresh_token', response.refresh_token);
+    dispatch(setAuthUser(userInfo));
+    window.location.href = '/chats';
   };
 
   return (
@@ -91,10 +119,11 @@ export const Login = () => {
 
           <div className="form-group mt-10">
             <button
+              disabled={loading}
               type="submit"
-              className="btn bg-primaryColor hover:bg-secondaryColor text-white w-full py-3 shadow-shadowLight"
+              className="btn bg-primaryColor hover:bg-secondaryColor text-white w-full py-3 shadow-shadowLight disabled:cursor-wait disabled:bg-secondaryColor"
             >
-              Login
+              {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
         </form>
