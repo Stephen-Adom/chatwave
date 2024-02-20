@@ -9,6 +9,11 @@ import { useEffect, useRef, useState } from 'react';
 import { debounceTime, fromEvent, map, of, tap } from 'rxjs';
 import styles from './register.module.css';
 import { AuthenticationService } from '@chatwave/services';
+import {
+  AuthenticationReponse,
+  handleError,
+  notifySuccess,
+} from '@chatwave/utils';
 
 type registerFormType = {
   firstname: string;
@@ -94,16 +99,18 @@ export const Register = () => {
   };
 
   const registerUser = (userInfo: registerFormType) => {
-    authService.registerUser(userInfo).then((res) => {
-      res
-        .json()
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
+    setLoading(true);
+    authService
+      .registerUser(userInfo)
+      .then((response: AuthenticationReponse) => {
+        notifySuccess('User created successfully');
+        setLoading(false);
+        console.log(response);
+      })
+      .catch((error) => {
+        setLoading(false);
+        handleError(error);
+      });
   };
 
   return (
@@ -288,10 +295,11 @@ export const Register = () => {
 
           <div className="form-group mt-8 col-span-2">
             <button
+              disabled={loading}
               type="submit"
-              className="btn bg-primaryColor hover:bg-secondaryColor text-white w-full py-3 shadow-shadowLight"
+              className="btn bg-primaryColor hover:bg-secondaryColor text-white w-full py-3 shadow-shadowLight disabled:cursor-wait disabled:bg-secondaryColor"
             >
-              Create Account
+              {loading ? 'Creating Account' : 'Create Account'}
             </button>
           </div>
         </form>

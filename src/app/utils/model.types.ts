@@ -6,3 +6,27 @@ export type RegisterUserType = {
   password: string;
   phonenumber: string;
 };
+
+export type ErrorType = {
+  status: string;
+  messages: string[];
+};
+
+export type AuthUser = {
+  bio: string | null;
+  email: string;
+  enabled: boolean;
+  firstname: string;
+  id: number;
+  image: string | null;
+  lastname: string;
+  phonenumber: string;
+  username: string;
+};
+
+export type AuthenticationReponse = {
+  data: AuthUser;
+  access_token: string;
+  refresh_token: string;
+  status: string;
+};

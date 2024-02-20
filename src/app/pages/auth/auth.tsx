@@ -5,7 +5,7 @@ export const Auth = () => {
   return (
     <div id="auth-module">
       <Outlet />
-      <Toaster />
+      <Toaster position="top-right" />
     </div>
   );
 };
