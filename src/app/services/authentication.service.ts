@@ -22,4 +22,24 @@ export class AuthenticationService {
       throw error;
     }
   };
+
+  signOut = async () => {
+    try {
+      const response = await fetch(`${BASEURI}/auth/logout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionStorage.getItem('access_token')}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw errorResponse;
+      }
+      return response.json();
+    } catch (error) {
+      throw error;
+    }
+  };
 }

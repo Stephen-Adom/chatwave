@@ -11,8 +11,13 @@ import { VscBell } from 'react-icons/vsc';
 import chatWaveLogo from 'assets/images/logo/chatwave-logo.png';
 import imageOne from 'assets/images/users/100_1.jpg';
 import styles from './navigation-sidebar.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { AuthenticationService } from '@chatwave/services';
+import { notifyError } from '@chatwave/utils';
+import localforage from 'localforage';
+import { useDispatch } from 'react-redux';
+import { clearAuthUser } from '@chatwave/store';
 
 const sidebarRoutes: { url: string; icon: JSX.Element }[] = [
   {
@@ -33,7 +38,12 @@ const sidebarRoutes: { url: string; icon: JSX.Element }[] = [
   },
 ];
 
+const authenticationService = new AuthenticationService();
+
 export const NavigationSidebar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const defaultStyles =
     'mb-2 hover:bg-[#e3e9f2] rounded-lg p-2 flex items-center justify-center';
 
@@ -64,7 +74,22 @@ export const NavigationSidebar = () => {
   };
 
   const acceptSignOut = () => {
-    console.log('sign out');
+    authenticationService
+      .signOut()
+      .then((response) => {
+        clearUserInfoAndSignOut();
+      })
+      .catch((err) => {
+        notifyError('Sign out failed');
+      });
+  };
+
+  const clearUserInfoAndSignOut = () => {
+    localforage.clear().then(() => {
+      sessionStorage.clear();
+      dispatch(clearAuthUser());
+      navigate('/auth/login');
+    });
   };
 
   return (
